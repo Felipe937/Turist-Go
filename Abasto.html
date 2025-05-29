@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abasto Restaurante | Turist Go</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #1a3c34, #3d5a3d, #8b6f47); /* Gradiente inspirado en Abasto */
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --accent-color: #ffcc70;
+      --btn-bg: #ff7b00;
+      --btn-hover: #e86c00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--main-bg);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: var(--accent-color);
+      font-size: 1rem;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 1000;
+    }
+
+    .back-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+      animation: fadeIn 1s ease forwards;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 2.8rem;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    .content h2 {
+      font-size: 1.4rem;
+      color: #d0d0d0;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #e0e0e0;
+      margin-bottom: 20px;
+    }
+
+    .map-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--btn-bg);
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 123, 0, 0.3);
+      margin-top: 20px;
+    }
+
+    .map-btn:hover {
+      background: var(--btn-hover);
+      box-shadow: 0 6px 20px rgba(255, 123, 0, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card img {
+        height: 250px;
+      }
+
+      .content h1 {
+        font-size: 2rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="javascript:history.back()" class="back-btn" aria-label="Volver atrás">← Volver</a>
+
+  <div class="card" role="region" aria-label="Restaurante Abasto">
+    <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noz_p6Lw9OKzJaywK11RAvYtYixI4LfVFyvS_YUpxt7zVziP5PSSLF0X03cupaqLlWNu0OxqNX262o399QA6PSYVW598By_bJB3bDZ2hDGfhKuimZWBc12OPgWcc5Z63tYfXyw=s1360-w1360-h1020-rw" alt="Interior acogedor del restaurante Abasto en Bogotá" />
+    <div class="content">
+      <h1>Abasto</h1>
+      <h2>Sabores colombianos con un toque mediterráneo</h2>
+      <p>
+        Abasto, liderado por la chef Luz Beatriz Vélez, es un referente de la cocina farm-to-table en Bogotá. Desde 2007, sus sedes en Usaquén y Quinta Camacho ofrecen platos como arepas, calentado Abasto y chilaquiles, elaborados con ingredientes frescos y locales, en un ambiente que evoca un mercado de pueblo.
+      </p>
+      <p>
+        En Turist Go celebramos lugares como Abasto, donde la comida es un homenaje a la tradición y la sostenibilidad.
+      </p>
+      <a href="https://maps.app.goo.gl/gWwmqw1nnMKB7CsYA" target="_blank" class="map-btn" aria-label="Ver mapa de Abasto">Ver en Google Maps</a>
+    </div>
+  </div>
+</body>
+</html>
