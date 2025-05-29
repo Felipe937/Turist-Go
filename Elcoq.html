@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>El Coq - Experiencia Nocturna en Bogotá</title>
+  <style>
+    /* Reset y base */
+    ** {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      min-height: 100svh;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1c1c1c;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: #1c1c1c;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255, 60, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+    }
+    /* Ocultar contenido inicialmente */
+    .content {
+      display: none;
+      flex-direction: column;
+    }
+    h1 {
+      color: #ff4a00;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin-bottom: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+    }
+    .location {
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+    p {
+      line-height: 1.5;
+      margin-bottom: 18px;
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    }
+    .highlight {
+      color: #ff4a00;
+      font-weight: 700;
+    }
+    .info {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      box-shadow: inset 0 0 10px #ff4a0070;
+    }
+    .info strong {
+      color: #ff4a00;
+    }
+    a.button {
+      display: block;
+      background-color: #ff4a00;
+      color: white;
+      text-align: center;
+      padding: 14px 0;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      margin-top: 10px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    a.button:hover,
+    a.button:focus {
+      background-color: #cc3f00;
+      outline: none;
+    }
+    button.back-btn {
+      background-color: #444;
+      color: #f5f5f5;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    button.back-btn:hover,
+    button.back-btn:focus {
+      background-color: #666;
+      outline: none;
+    }
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 0.85rem;
+      color: #888;
+      display: none; /* oculto inicialmente */
+    }
+    @media (max-width: 480px) {
+      img {
+        max-height: 180px;
+      }
+      a.button {
+        font-size: 1rem;
+        padding: 12px 0;
+      }
+      button.back-btn {
+        font-size: 0.95rem;
+        padding: 9px 0;
+      }
+    }
+    /* Overlay del juego */
+    #gameOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    #videoElement {
+      width: 90vw;
+      max-width: 600px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ff4a00;
+      background: black;
+    }
+    #detectionMessage {
+      margin-top: 15px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #ff4a00;
+      min-height: 2rem;
+      user-select: none;
+    }
+    #closeGameBtn {
+      margin-top: 15px;
+      background-color: #444;
+      padding: 8px 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      color: #f5f5f5;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    #closeGameBtn:hover,
+    #closeGameBtn:focus {
+      background-color: #666;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>El Coq</h1>
+    <button class="back-btn" type="button" aria-label="Volver a la página anterior" onclick="window.history.back()">← Volver</button>
+
+    <!-- Botón para iniciar el reconocimiento -->
+    <button class="game-btn" id="startGameBtn" aria-label="Iniciar reconocimiento de cerveza">🎮 Mostrar cerveza</button>
+
+    <div class="content" aria-live="polite">
+      <div class="location" role="region" aria-label="Ubicación">Bogotá, Colombia</div>
+      <img src="https://i.pinimg.com/736x/3f/f1/a8/3ff1a8f149d0df8eefe30525822e361d.jpg" alt="Interior del Bar El Coq, mostrando un ambiente vibrante y moderno" />
+      <p>
+        Bienvenido a <span class="highlight">El Coq</span>, una joya de la vida nocturna bogotana que no puedes dejar de visitar. Con un diseño único construido alrededor de un árbol y una atmósfera fresca, es el punto de encuentro para amantes de la música electrónica y la cultura urbana.
+      </p>
+      <p>
+        Ubicado en una zona céntrica y accesible, <span class="highlight">El Coq</span> ofrece noches inolvidables con DJs reconocidos, música en vinilos y una vibra auténtica que te hará descubrir Bogotá desde una perspectiva única.
+      </p>
+      <div class="info" role="region" aria-label="Información del bar">
+        <p><strong>Dirección:</strong> Calle 85 No. 13-85, Bogotá</p>
+        <p><strong>Horario:</strong> Miércoles a domingo, 10:00 PM - 5:00 AM</p>
+        <p><strong>Recomendación:</strong> Trae identificación oficial y prepárate para una experiencia vibrante.</p>
+      </div>
+      <a class="button" href="https://maps.app.goo.gl/VGHSw1wmoKDd6Mbg6" target="_blank" rel="noopener noreferrer" aria-label="Google maps de El Coq">Visita El Coq</a>
+    </div>
+
+    <footer role="contentinfo">© 2025 Turist Go - El Coq Bogotá</footer>
+  </div>
+
+  <!-- Overlay de cámara y detección -->
+  <div id="gameOverlay" role="dialog" aria-modal="true" aria-label="Reconocimiento de cerveza">
+    <video id="videoElement" autoplay playsinline muted></video>
+    <div id="detectionMessage" aria-live="polite">Muestra una cerveza frente a la cámara...</div>
+    <button id="closeGameBtn" aria-label="Cerrar reconocimiento de cerveza">Cerrar</button>
+  </div>
+
+  <!-- TensorFlow.js y COCO-SSD -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+
+  <script>
+    const startGameBtn = document.getElementById('startGameBtn');
+    const gameOverlay = document.getElementById('gameOverlay');
+    const video = document.getElementById('videoElement');
+    const detectionMessage = document.getElementById('detectionMessage');
+    const closeGameBtn = document.getElementById('closeGameBtn');
+    const contentDiv = document.querySelector('.content');
+    const footer = document.querySelector('footer');
+
+    let model;
+    let stream;
+    let detecting = false;
+
+    // Carga el modelo COCO-SSD
+    async function loadModel() {
+      detectionMessage.textContent = 'Cargando modelo...';
+      model = await cocoSsd.load();
+      detectionMessage.textContent = 'Modelo cargado. Abre tu cámara.';
+    }
+
+    // Iniciar la cámara
+    async function startCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        video.srcObject = stream;
+        await video.play();
+      } catch (error) {
+        detectionMessage.textContent = 'Error al acceder a la cámara: ' + error.message;
+      }
+    }
+
+    // Función para parar la cámara
+    function stopCamera() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+      }
+      video.pause();
+      video.srcObject = null;
+    }
+
+    // Detectar objetos en el video
+    async function detectObjects() {
+      if (!model || !stream) return;
+
+      detecting = true;
+
+      while (detecting) {
+        const predictions = await model.detect(video);
+        // Buscamos si hay una botella ("bottle")
+        const bottle = predictions.find(p => p.class === 'bottle' && p.score > 0.6);
+
+        if (bottle) {
+          detectionMessage.textContent = '¡Cerveza detectada! Mostrando información...';
+          // Parar detección y cámara
+          detecting = false;
+          stopCamera();
+          // Mostrar contenido e info
+          contentDiv.style.display = 'flex';
+          footer.style.display = 'block';
+          gameOverlay.style.display = 'none';
+          startGameBtn.style.display = 'none';
+        } else {
+          detectionMessage.textContent = 'Muestra una cerveza frente a la cámara...';
+          await new Promise(r => setTimeout(r, 300)); // Espera para no saturar
+        }
+      }
+    }
+
+    // Inicio del juego/detección
+    startGameBtn.addEventListener('click', async () => {
+      contentDiv.style.display = 'none';
+      footer.style.display = 'none';
+      startGameBtn.style.display = 'none';
+      gameOverlay.style.display = 'flex';
+      detectionMessage.textContent = 'Cargando modelo...';
+
+      if (!model) {
+        await loadModel();
+      }
+
+      await startCamera();
+      detectObjects();
+    });
+
+    closeGameBtn.addEventListener('click', () => {
+      detecting = false;
+      stopCamera();
+      gameOverlay.style.display = 'none';
+      startGameBtn.style.display = 'inline-block';
+      contentDiv.style.display = 'none';
+      footer.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
