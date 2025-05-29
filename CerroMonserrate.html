@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Turist Go | Cerro de Monserrate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f7fa;
+      color: #222222;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a, button { font-family: inherit; }
+
+    header {
+      position: relative;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgEpTUnEb1FzjDnh-5crYDnor98UggeB72MA&s') center/cover no-repeat;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+      z-index: 0;
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+      margin: 0 20px;
+    }
+    header h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      letter-spacing: 0.04em;
+    }
+    header p {
+      margin-top: 10px;
+      font-weight: 400;
+      font-size: 1.15rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto 60px;
+      padding: 0 24px;
+    }
+    section {
+      margin-bottom: 48px;
+    }
+    section h2 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      color: #004d40;
+      border-bottom: 2px solid #004d40;
+      padding-bottom: 6px;
+      max-width: fit-content;
+    }
+    section p, section ul {
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: #444444;
+    }
+    ul { padding-left: 1.2em; }
+    ul li { margin-bottom: 10px; }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 20px 10px;
+      background-color: #004d40;
+      color: #f0f0f0;
+      user-select: none;
+    }
+
+    .btn-retroceso {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      background-color: #004d40;
+      border: none;
+      color: white;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0, 77, 64, 0.4);
+      transition: background-color 0.3s ease;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-retroceso:hover, .btn-retroceso:focus {
+      background-color: #00332f;
+      outline: none;
+    }
+    .btn-retroceso svg {
+      width: 16px;
+      height: 16px;
+      fill: white;
+    }
+
+    .btn-maps {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #007a5a;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 122, 90, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1100;
+    }
+    .btn-maps:hover, .btn-maps:focus {
+      background-color: #005a3f;
+      box-shadow: 0 8px 16px rgba(0, 90, 63, 0.6);
+      outline: none;
+    }
+    .btn-maps svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    #gameOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      color: white;
+    }
+    #videoElement {
+      max-width: 90vw;
+      max-height: 70vh;
+      border: 3px solid white;
+      border-radius: 8px;
+      background: black;
+    }
+    #detectionMessage {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+    }
+    #closeGameBtn, #startGameBtn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+    }
+    #closeGameBtn {
+      background-color: #d9534f;
+      color: white;
+    }
+    #startGameBtn {
+      background-color: #5cb85c;
+      color: white;
+      margin: 2rem auto;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      header { height: 240px; }
+      header h1 { font-size: 2rem; }
+      header p { font-size: 1rem; max-width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="btn-retroceso" aria-label="Volver a la página anterior" onclick="history.back()">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+  Volver
+</button>
+
+<header role="banner">
+  <h1 id="titulo">Turist Go: Cerro de Monserrate</h1>
+  <p aria-labelledby="titulo">Descubre Monserrate como turista en tu propia ciudad. Una experiencia única para residentes de Bogotá que buscan cultura, fe y naturaleza.</p>
+</header>
+
+<main role="main">
+  <button id="startGameBtn" aria-label="Iniciar reconocimiento de planta">Reconocer planta</button>
+
+  <div class="content" style="display: none;">
+    <section role="region" aria-labelledby="icono">
+      <h2 id="icono">Un ícono de Bogotá</h2>
+      <p>El Cerro de Monserrate es un símbolo religioso, natural y cultural en Bogotá. Con más de 3.100 metros de altura, ofrece vistas panorámicas y es hogar del santuario del Señor Caído, un punto de peregrinación reconocido.</p>
+    </section>
+
+    <section role="region" aria-labelledby="acceso">
+      <h2 id="acceso">Formas de acceso</h2>
+      <ul>
+        <li><strong>Teleférico:</strong> Vista panorámica en cabinas seguras.</li>
+        <li><strong>Funicular:</strong> Ascenso tradicional y cómodo.</li>
+        <li><strong>Sendero peatonal:</strong> Ideal para caminatas (recomendado en las mañanas).</li>
+      </ul>
+    </section>
+
+    <section role="region" aria-labelledby="actividades">
+      <h2 id="actividades">Actividades recomendadas</h2>
+      <ul>
+        <li>Visitar el santuario y participar en ceremonias.</li>
+        <li>Comer en restaurantes típicos con vista a Bogotá.</li>
+        <li>Observar el atardecer o tomar fotografías.</li>
+        <li>Comprar recuerdos y artesanías.</li>
+      </ul>
+    </section>
+
+    <section role="region" aria-labelledby="consejos">
+      <h2 id="consejos">Consejos para bogotanos</h2>
+      <p>Evita los fines de semana si prefieres tranquilidad. Lleva chaqueta ligera, calzado cómodo y agua. Consulta horarios si planeas subir caminando. Ideal para visitas familiares o escapadas locales con sentido espiritual.</p>
+    </section>
+  </div>
+</main>
+
+<div id="gameOverlay" role="dialog" aria-modal="true" aria-label="Reconocimiento de planta">
+  <video id="videoElement" autoplay playsinline muted></video>
+  <div id="detectionMessage" aria-live="polite">Muestra una planta frente a la cámara...</div>
+  <button id="closeGameBtn" aria-label="Cerrar reconocimiento de planta">Cerrar</button>
+</div>
+
+<button class="btn-maps" aria-label="Abrir Google Maps para llegar al Cerro de Monserrate" onclick="window.open('https://maps.app.goo.gl/Ms9XbjGwZNQsRXFx6', '_blank')">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z"/>
+  </svg>
+  Cómo llegar
+</button>
+
+<footer>
+  © 2025 Turist Go | Todos los derechos reservados.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+<script>
+  const startGameBtn = document.getElementById('startGameBtn');
+  const gameOverlay = document.getElementById('gameOverlay');
+  const video = document.getElementById('videoElement');
+  const detectionMessage = document.getElementById('detectionMessage');
+  const closeGameBtn = document.getElementById('closeGameBtn');
+  const contentDiv = document.querySelector('.content');
+  const footer = document.querySelector('footer');
+
+  let model;
+  let stream;
+  let detecting = false;
+
+  async function loadModel() {
+    detectionMessage.textContent = 'Cargando modelo...';
+    model = await cocoSsd.load();
+    detectionMessage.textContent = 'Modelo cargado. Abre tu cámara.';
+  }
+
+  async function startCamera() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      video.srcObject = stream;
+      await video.play();
+    } catch (error) {
+      detectionMessage.textContent = 'Error al acceder a la cámara: ' + error.message;
+    }
+  }
+
+  function stopCamera() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      stream = null;
+    }
+    video.pause();
+    video.srcObject = null;
+  }
+
+  async function detectObjects() {
+    if (!model || !stream) return;
+
+    detecting = true;
+
+    while (detecting) {
+      const predictions = await model.detect(video);
+      const plant = predictions.find(p => p.class === 'potted plant' && p.score > 0.6);
+
+      if (plant) {
+        detectionMessage.textContent = '¡Planta detectada! Mostrando información...';
+        detecting = false;
+        stopCamera();
+        contentDiv.style.display = 'block';
+        footer.style.display = 'block';
+        gameOverlay.style.display = 'none';
+        startGameBtn.style.display = 'none';
+      } else {
+        detectionMessage.textContent = 'Muestra una planta frente a la cámara...';
+        await new Promise(r => setTimeout(r, 300));
+      }
+    }
+  }
+
+  startGameBtn.addEventListener('click', async () => {
+    contentDiv.style.display = 'none';
+    footer.style.display = 'none';
+    startGameBtn.style.display = 'none';
+    gameOverlay.style.display = 'flex';
+    detectionMessage.textContent = 'Cargando modelo...';
+
+    if (!model) {
+      await loadModel();
+    }
+
+    await startCamera();
+    detectObjects();
+  });
+
+  closeGameBtn.addEventListener('click', () => {
+    detecting = false;
+    stopCamera();
+    gameOverlay.style.display = 'none';
+    startGameBtn.style.display = 'inline-block';
+    contentDiv.style.display = 'none';
+    footer.style.display = 'none';
+  });
+</script>
+</body>
+</html>
