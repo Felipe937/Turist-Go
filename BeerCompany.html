@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bogotá Beer Company - Cerveza Artesanal</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1c1c1c;
+    color: #f5f5f5;
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 20px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
+  }
+  h1 {
+    color: #ffa500;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .location {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+  }
+  img {
+    width: 100%;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    height: 200px;
+  }
+  p {
+    line-height: 1.5;
+    margin-bottom: 18px;
+    font-size: 1rem;
+  }
+  .highlight {
+    color: #ffa500;
+    font-weight: 700;
+  }
+  .info {
+    background: #2a2a2a;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    box-shadow: inset 0 0 10px #ffa50070;
+  }
+  .info strong {
+    color: #ffa500;
+  }
+  .beer-list {
+    list-style-type: none;
+    margin-bottom: 20px;
+  }
+  .beer-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+  }
+  .beer-list .highlight {
+    font-weight: 700;
+  }
+  a.button {
+    display: block;
+    background-color: #ffa500;
+    color: #1c1c1c;
+    text-align: center;
+    padding: 14px 0;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    margin-top: auto;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  a.button:hover,
+  a.button:focus {
+    background-color: #cc8400;
+    outline: none;
+  }
+  button.back-btn {
+    background-color: #444;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  button.back-btn:hover,
+  button.back-btn:focus {
+    background-color: #666;
+    outline: none;
+  }
+  footer {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  @media (max-width: 360px) {
+    body {
+      margin: 10px;
+      padding: 15px;
+      min-height: 600px;
+      max-width: 100vw;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(255, 165, 0, 0.5);
+    }
+    h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1.8px;
+      margin-bottom: 10px;
+    }
+    .location {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    img {
+      height: 160px;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+    .info {
+      font-size: 0.9rem;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+    }
+    a.button {
+      font-size: 1rem;
+      padding: 12px 0;
+      border-radius: 6px;
+    }
+    button.back-btn {
+      font-size: 0.9rem;
+      padding: 8px 0;
+      margin-bottom: 16px;
+      border-radius: 6px;
+    }
+    footer {
+      font-size: 0.8rem;
+      margin-top: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>Bogotá Beer Company</h1>
+<button class="back-btn" type="button" aria-label="Volver a la página anterior" onclick="window.history.back()">← Volver</button>
+<div class="location" role="region" aria-label="Ubicación">Bogotá, Colombia</div>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyUrJpiEz5JNHkpwz21xqy-vffGuEA6gfspA&s" alt="Cervezas artesanales de Bogotá Beer Company" />
+<p>
+  <span class="highlight">Bogotá Beer Company (BBC)</span> es la cervecería artesanal más icónica de la capital colombiana. Fundada en 2002, combina tradición cervecera con sabores innovadores.
+</p>
+<p>
+  Sus gastropubs ofrecen un ambiente único donde disfrutar de cervezas premium acompañadas de platos locales e internacionales.
+</p>
+<div class="info" role="region" aria-label="Información del bar">
+  <p><strong>Dirección:</strong> Varias sedes (Zona G, Parque 93, La Candelaria)</p>
+  <p><strong>Horario:</strong> Lunes a domingo, 12:00 PM - 12:00 AM</p>
+  <p><strong>Cervezas destacadas:</strong></p>
+  <ul class="beer-list">
+    <li><span class="highlight">BBC Lager</span> - Clásica y refrescante</li>
+    <li><span class="highlight">Chapinero Porter</span> - Oscura con notas de chocolate</li>
+    <li><span class="highlight">Candelaria Clásica</span> - Estilo Kölsch</li>
+  </ul>
+</div>
+<a class="button" href="https://maps.app.goo.gl/X1sN3vVyQhJysZyg7" target="_blank" rel="noopener noreferrer" aria-label="Visitar sitio web de BBC en una ventana nueva">Visita bogotabeercompany</a>
+<footer role="contentinfo">© 2025 Turist Go - Bogota Beer Company</footer>
+<script>
+  function fitHeight() {
+    const maxHeight = 600;
+    if(window.innerHeight > maxHeight){
+      document.body.style.minHeight = maxHeight + 'px';
+    }
+  }
+  window.addEventListener('resize', fitHeight);
+  fitHeight();
+</script>
+</body>
+</html>
