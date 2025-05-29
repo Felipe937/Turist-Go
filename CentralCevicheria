@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Central Cevichería | Turist Go</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #0a3d3b, #254e49, #30756b);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --accent-color: #ffcc70;
+      --btn-bg: #ff7b00;
+      --btn-hover: #e86c00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--main-bg);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    /* Botón de retroceso */
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: var(--accent-color);
+      font-size: 1rem;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 1000; /* Asegura que el botón esté por encima de todo el contenido */
+    }
+
+    .back-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+      animation: fadeIn 1s ease forwards;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1; /* Asegura que la tarjeta esté detrás del botón de retroceso */
+    }
+
+    .card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: 2.8rem;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    .content h2 {
+      font-size: 1.4rem;
+      color: #d0d0d0;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #e0e0e0;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--btn-bg);
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 123, 0, 0.3);
+    }
+
+    .btn:hover {
+      background: var(--btn-hover);
+      box-shadow: 0 6px 20px rgba(255, 123, 0, 0.5);
+    }
+
+    .map-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--btn-bg); /* Usamos el mismo color que el botón de Explorar */
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 123, 0, 0.3);
+      margin-top: 20px;
+    }
+
+    .map-btn:hover {
+      background: var(--btn-hover); /* El mismo efecto al hacer hover */
+      box-shadow: 0 6px 20px rgba(255, 123, 0, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card img {
+        height: 250px;
+      }
+
+      .content h1 {
+        font-size: 2rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botón de retroceso -->
+  <a href="javascript:history.back()" class="back-btn" aria-label="Volver atrás">← Volver</a>
+
+  <div class="card" role="region" aria-label="Restaurante Central Cevichería">
+    <img src="https://s3.amazonaws.com/takami.co/thumbnails/brandcarouselimage/4a5e341eef184560b6e790b9a9c176d5/klawnyrzwicdybuewrb9z7_2500_1125.jpeg" alt="Plato de ceviche fresco servido en Central Cevichería" />
+    <div class="content">
+      <h1>Central Cevichería</h1>
+      <h2>Una experiencia única de ceviches en el corazón de la ciudad</h2>
+      <p>
+        Central Cevichería es un lugar donde el ceviche es llevado a otro nivel. Con ingredientes frescos y una técnica impecable, cada plato es una explosión de sabor.
+        Su ubicación en el centro de la ciudad hace que sea el lugar perfecto para disfrutar de una comida rápida pero exquisita, rodeado de buena vibra y sabores intensos.
+      </p>
+      <p>
+        Disfruta de la frescura y autenticidad del ceviche, con opciones innovadoras que van desde lo tradicional hasta lo más contemporáneo.
+      </p>
+      <!-- Botón de Google Maps con el mismo color que el botón de Explorar -->
+      <a href="https://maps.app.goo.gl/kGQFBKhsY66B9CNA8" target="_blank" class="map-btn" aria-label="Ver mapa de Central Cevichería">Ver en Google Maps</a>
+    </div>
+  </div>
+
+</body>
+</html>
