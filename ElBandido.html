@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>El Bandido - Experiencia de Cócteles en Bogotá</title>
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1c1c1c;
+    color: #f5f5f5;
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 20px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 100, 200, 0.6);
+  }
+  h1 {
+    color: #00a8ff;
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+  }
+  .location {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+  }
+  img {
+    width: 100%;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    height: 200px;
+  }
+  p {
+    line-height: 1.5;
+    margin-bottom: 18px;
+    font-size: 1rem;
+  }
+  .highlight {
+    color: #00a8ff;
+    font-weight: 700;
+  }
+  .info {
+    background: #2a2a2a;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    box-shadow: inset 0 0 10px #00a8ff70;
+  }
+  .info strong {
+    color: #00a8ff;
+  }
+  a.button {
+    display: block;
+    background-color: #00a8ff;
+    color: white;
+    text-align: center;
+    padding: 14px 0;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    margin-top: auto;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  a.button:hover,
+  a.button:focus {
+    background-color: #0077cc;
+    outline: none;
+  }
+  button.back-btn {
+    background-color: #444;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+  button.back-btn:hover,
+  button.back-btn:focus {
+    background-color: #666;
+    outline: none;
+  }
+  footer {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  /* Responsive adjustments for very small screens */
+  @media (max-width: 360px) {
+    body {
+      margin: 10px;
+      padding: 15px;
+      min-height: 600px;
+      max-width: 100vw;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0, 100, 200, 0.5);
+    }
+    h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1.8px;
+      margin-bottom: 10px;
+    }
+    .location {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    img {
+      height: 160px;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+    .info {
+      font-size: 0.9rem;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+    }
+    a.button {
+      font-size: 1rem;
+      padding: 12px 0;
+      border-radius: 6px;
+    }
+    button.back-btn {
+      font-size: 0.9rem;
+      padding: 8px 0;
+      margin-bottom: 16px;
+      border-radius: 6px;
+    }
+    footer {
+      font-size: 0.8rem;
+      margin-top: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<h1>El Bandido</h1>
+<button class="back-btn" type="button" aria-label="Volver a la página anterior" onclick="window.history.back()">← Volver</button>
+<div class="location" role="region" aria-label="Ubicación">Zona G, Bogotá</div>
+<img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=350&q=80" alt="Barra de cócteles en El Bandido con iluminación tenue" />
+<p>
+  <span class="highlight">El Bandido</span> es el secreto mejor guardado de la Zona G, un bar clandestino moderno donde la mixología se convierte en arte. Perfecto para turistas que buscan una experiencia auténtica lejos de los circuitos tradicionales.
+</p>
+<p>
+  Con cócteles que reinventan sabores colombianos y un ambiente íntimo de <span class="highlight">speakeasy</span>, este lugar te transportará a la escena gourmet hipster de Bogotá. Ideal para antes o después de cenar en los restaurantes de la zona.
+</p>
+<div class="info" role="region" aria-label="Información del bar">
+  <p><strong>Dirección:</strong> Carrera 4A #66-96, Bogotá</p>
+  <p><strong>Horario:</strong> Lunes a sábado, 5:00 PM - 2:00 AM</p>
+  <p><strong>Recomendación:</strong> Prueba su firma "El Forajido" con aguardiente y pregunta por creaciones estacionales.</p>
+</div>
+<a class="button" href="https://maps.app.goo.gl/We3VKVos64mbEAYy5" target="_blank" rel="noopener noreferrer" aria-label="Visitar Instagram de El Bandido en una ventana nueva">Visita El Bandido</a>
+<footer role="contentinfo">© 2025 Turist Go - El Bandido</footer>
+<script>
+  function fitHeight() {
+    const maxHeight = 600;
+    if(window.innerHeight > maxHeight){
+      document.body.style.minHeight = maxHeight + 'px';
+    }
+  }
+  window.addEventListener('resize', fitHeight);
+  fitHeight();
+</script>
+</body>
+</html>
