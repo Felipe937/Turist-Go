@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bares Recomendados en Bogotá</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        .back-btn {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        .back-btn:hover {
+            background-color: #003d7e;
+        }
+        .back-btn i {
+            margin-right: 5px;
+        }
+        .bar-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 15px;
+            margin-bottom: 70px; /* Espacio para el footer */
+        }
+        .bar-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .bar-item:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+        }
+        .bar-item img {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .bar-item h3 {
+            font-size: 1.5em;
+            color: #007BFF;
+            margin: 10px 0;
+        }
+        .bar-item p {
+            font-size: 1em;
+            color: #555;
+            margin: 8px 0;
+        }
+        .stars {
+            font-size: 1.3em;
+            color: gold;
+            margin-top: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Media queries para dispositivos móviles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5em;
+                margin-left: 25px;
+                margin-right: 25px;
+            }
+            .back-btn {
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+            .bar-item {
+                width: calc(100% - 30px);
+                margin: 10px 0;
+            }
+            .bar-item h3 {
+                font-size: 1.3em;
+            }
+            .bar-item p {
+                font-size: 0.9em;
+            }
+        }
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.3em;
+            }
+            .back-btn span {
+                display: none; /* Oculta el texto "Atrás" en móviles muy pequeños */
+            }
+            .back-btn i {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="back-btn" onclick="goBack()">
+        <i>←</i> <span>Atrás</span>
+    </button>
+    <h1>Bares Recomendados en Bogotá</h1>
+</header>
+
+<div class="bar-list">
+    <a href="ElCoq.html" class="bar-item">
+        <img src="Img/Bares/El Coq.jpg" alt="El Coq">
+        <h3>El Coq</h3>
+        <p>Ubicado en La Candelaria, es ideal para disfrutar de una buena comida y bebidas con amigos.</p>
+        <div class="stars">★★★★★</div>
+    </a>
+    <a href="AndresCarneDeRes.html" class="bar-item">
+        <img src="Img/Bares/Andrés Carne de Res.jpg" alt="Andrés Carne de Res">
+        <h3>Andrés Carne de Res</h3>
+        <p>Situado en Chía, este es un lugar famoso por su ambiente festivo y su variada oferta gastronómica.</p>
+        <div class="stars">★★★★☆</div>
+    </a>
+    <a href="BocaBoca.html" class="bar-item">
+        <img src="Img/Bares/boca31.jpg" alt="BOCA BOCA Restaurante Bar Karaoke">
+        <h3>BOCA BOCA Restaurante Bar Karaoke</h3>
+        <p>Ubicado en Chapinero, es un lugar con una excelente carta de cocteles y música en vivo.</p>
+        <div class="stars">★★★★☆</div>
+    </a>
+    <a href="ElBandido.html" class="bar-item">
+        <img src="Img/Bares/el-bandido-bistro.jpg" alt="El Bandido">
+        <h3>El Bandido</h3>
+        <p>En la Zona T, El Bandido es perfecto para disfrutar de cócteles creativos y una excelente comida.</p>
+        <div class="stars">★★★☆☆</div>
+    </a>
+    <a href="BeerCompany.html" class="bar-item">
+        <img src="Img/Bares/Bogotá Beer Company.webp" alt="Bogotá Beer Company">
+        <h3>Bogotá Beer Company</h3>
+        <p>Con varias ubicaciones en Chapinero, BBC es una de las mejores cervecerías artesanales en Bogotá.</p>
+        <div class="stars">★★★★★</div>
+    </a>
+</div>
+
+<footer>
+    <p>&copy; 2025 Turist Go | Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>
