@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Escaneo de Obra de Arte</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #fff; /* blanco puro para fondo limpio */
+  margin: 0;
+  padding: 0;
+  color: #222; /* texto principal en gris oscuro */
+}
+
+#startGameBtn {
+  margin: 30px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #5B2C6F; /* púrpura moderno */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#startGameBtn:hover {
+  background-color: #3E1B4A; /* púrpura más oscuro para hover */
+}
+
+#gameOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85); /* más opaco para mejor contraste */
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+}
+
+video {
+  width: 100%;
+  max-width: 400px;
+  border: 3px solid #5B2C6F; /* borde púrpura */
+  border-radius: 10px;
+}
+
+#detectionMessage {
+  margin: 10px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#closeGameBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #5B2C6F;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#closeGameBtn:hover {
+  background-color: #3E1B4A;
+}
+
+.content {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #FAFAFA; /* gris muy claro para fondo */
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 4px 10px rgba(91, 44, 111, 0.2); /* sombra suave púrpura */
+  text-align: center;
+  color: #222;
+}
+
+.content h2 {
+  color: #5B2C6F;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.content img.art-image {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #5B2C6F;
+  margin-bottom: 20px;
+}
+
+.content p, .content ul {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: justify;
+  max-width: 700px;
+}
+
+.content strong {
+  font-weight: bold;
+  color: #5B2C6F;
+}
+
+#backBtn {
+  background-color: #5B2C6F;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#backBtn:hover {
+  background-color: #3E1B4A;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  margin: 30px 0;
+  display: none;
+  font-style: italic;
+}
+  </style>
+</head>
+<body>
+
+<button id="startGameBtn" aria-label="Iniciar escaneo de obra">Escanear obra de arte</button>
+
+<!-- Overlay de cámara y detección -->
+<div id="gameOverlay" role="dialog" aria-modal="true" aria-label="Escaneo de obra de arte">
+  <video id="videoElement" autoplay playsinline muted></video>
+  <div id="detectionMessage" aria-live="polite">Muestra la obra de arte frente a la cámara...</div>
+  <button id="closeGameBtn" aria-label="Cerrar escaneo">Cerrar</button>
+</div>
+
+<!-- Contenido informativo estilo Museo del Arte Moderno -->
+<div class="content">
+  <button id="backBtn">← Volver</button>
+  <h2>La Gran Obra Modernista</h2>
+  <img src="https://lh3.googleusercontent.com/p/AF1QipOzHZjpYF4bWhAlh_nGi6lyt2dgmeULxClE8cwO=s1360-w1360-h1020-rw" alt="Obra de arte moderna" class="art-image">
+  <p>
+    Bienvenido al <strong>Museo de Arte Moderno</strong>, un espacio dedicado a celebrar la innovación y la expresión artística contemporánea. Esta obra, titulada <strong>La Gran Obra Modernista</strong>, fue creada por el reconocido <strong>Artista Ejemplar</strong> en <strong>1985</strong>. Su composición abstracta y el uso de colores vibrantes la convierten en una pieza fundamental del arte moderno colombiano.
+  </p>
+  <p>
+    Esta obra refleja la evolución de las formas, los materiales y las emociones en una era de cambio cultural. Te invitamos a descubrir más sobre el autor y su impacto en la escena artística latinoamericana.
+  </p>
+</div>
+
+<footer>
+  <p>Museo de Arte Moderno © 2025</p>
+</footer>
+
+<!-- TensorFlow.js y COCO-SSD -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.9.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+
+<script>
+  const startGameBtn = document.getElementById('startGameBtn');
+  const gameOverlay = document.getElementById('gameOverlay');
+  const video = document.getElementById('videoElement');
+  const detectionMessage = document.getElementById('detectionMessage');
+  const closeGameBtn = document.getElementById('closeGameBtn');
+  const contentDiv = document.querySelector('.content');
+  const footer = document.querySelector('footer');
+  const backBtn = document.getElementById('backBtn');
+
+  let model;
+  let stream;
+  let detecting = false;
+
+  async function loadModel() {
+    detectionMessage.textContent = 'Cargando modelo...';
+    model = await cocoSsd.load();
+    detectionMessage.textContent = 'Modelo cargado. Abre tu cámara.';
+  }
+
+  async function startCamera() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      video.srcObject = stream;
+      await video.play();
+    } catch (error) {
+      detectionMessage.textContent = 'Error al acceder a la cámara: ' + error.message;
+    }
+  }
+
+  function stopCamera() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      stream = null;
+    }
+    video.pause();
+    video.srcObject = null;
+  }
+
+  async function detectObjects() {
+    if (!model || !stream) return;
+
+    detecting = true;
+
+    while (detecting) {
+      const predictions = await model.detect(video);
+      const artObject = predictions.find(p =>
+        (p.class === 'book' || p.class === 'tv') && p.score > 0.6);
+
+      if (artObject) {
+        detectionMessage.textContent = '¡Obra de arte detectada! Mostrando información...';
+        detecting = false;
+        stopCamera();
+        contentDiv.style.display = 'flex';
+        footer.style.display = 'block';
+        gameOverlay.style.display = 'none';
+        startGameBtn.style.display = 'none';
+      } else {
+        detectionMessage.textContent = 'Muestra la obra de arte frente a la cámara...';
+        await new Promise(r => setTimeout(r, 300));
+      }
+    }
+  }
+
+  startGameBtn.addEventListener('click', async () => {
+    contentDiv.style.display = 'none';
+    footer.style.display = 'none';
+    startGameBtn.style.display = 'none';
+    gameOverlay.style.display = 'flex';
+    detectionMessage.textContent = 'Cargando modelo...';
+
+    if (!model) {
+      await loadModel();
+    }
+
+    await startCamera();
+    detectObjects();
+  });
+
+  closeGameBtn.addEventListener('click', () => {
+    detecting = false;
+    stopCamera();
+    gameOverlay.style.display = 'none';
+    startGameBtn.style.display = 'inline-block';
+    contentDiv.style.display = 'none';
+    footer.style.display = 'none';
+  });
+
+  backBtn.addEventListener('click', () => {
+    contentDiv.style.display = 'none';
+    startGameBtn.style.display = 'inline-block';
+    footer.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
