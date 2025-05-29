@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museo Nacional de Colombia | Bogotá</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #F8F4EF;
+      color: #333;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #3C3C3C;
+      color: #FFFFFF;
+      padding: 8px 16px;
+      z-index: 100;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    header {
+      background-color: #3C3C3C;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 2rem 1rem 2rem 4.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      background-color: #5A5A5A;
+      border: none;
+      color: white;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover,
+    .back-button:focus {
+      background-color: #2E2E2E;
+      outline: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background-color: #FFFFFF;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: justify;
+      border: 2px solid #DDD2C3;
+    }
+
+    section img {
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #3C3C3C;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background-color: #F8F4EF;
+    }
+
+    section h2 {
+      color: #3C3C3C;
+      margin-top: 0;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .directions-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: #3C3C3C;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 1rem auto;
+      transition: background-color 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .directions-button:hover {
+      background-color: #2E2E2E;
+    }
+    .directions-button i {
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    footer {
+      background-color: #3C3C3C;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
+      margin-top: 3rem;
+    }
+
+    a {
+      color: #5A5A5A;
+      font-weight: bold;
+    }
+    a:hover {
+      color: #2E2E2E;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding-left: 3.5rem;
+      }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      .back-button {
+        top: 1rem;
+        left: 1rem;
+        transform: none;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+      section img {
+        width: 160px;
+        height: 160px;
+      }
+      section h2 {
+        font-size: 1.4rem;
+      }
+      body {
+        font-size: 16px;
+      }
+      .directions-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <header role="banner">
+    <button class="back-button" aria-label="Volver a la página anterior" onclick="history.back();">
+      ← Volver
+    </button>
+    <h1>Museo Nacional de Colombia</h1>
+    <p>Un recorrido por la historia y el arte de la nación</p>
+  </header>
+
+  <main id="contenido-principal" tabindex="-1" role="main">
+    <section aria-labelledby="titulo-museo">
+      <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npFnZfx5U8M1tRCElYGdxIMZ8PJJ4dW_u4mk9cYlWn0NFh_VZaODE4BSAyfqM5C3J7XW1uxc2ZIlRkiJ0aJB2ua23dZU91cILtpgr1eYejF4fMJ49cNg0LjbyAQKVdPZQeb3eA=s1360-w1360-h1020-rw" alt="Fachada del Museo Nacional de Colombia en Bogotá" />
+      <h2 id="titulo-museo">El museo más antiguo del país</h2>
+      <p>
+        El <strong>Museo Nacional de Colombia</strong>, ubicado en el corazón de Bogotá, es el museo más antiguo del país y uno de los más antiguos de América. Su sede actual, un antiguo panóptico construido en 1874, alberga miles de piezas que relatan más de 20,000 años de historia.
+      </p>
+      <p>
+        En sus salas permanentes se exhiben colecciones de arqueología, arte colonial, moderno y contemporáneo, así como muestras de historia y etnografía. El museo promueve la diversidad cultural del país y ofrece exposiciones temporales, conciertos, talleres y recorridos educativos.
+      </p>
+
+      <div class="button-container">
+        <a href="https://maps.app.goo.gl/pGmZywkr4YcVhV2y9" target="_blank" class="directions-button" aria-label="Cómo llegar al Museo Nacional de Colombia en Google Maps">
+          <i class="fas fa-map-marker-alt"></i> Cómo llegar
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>© 2025 <strong>Turist Go</strong> | Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
