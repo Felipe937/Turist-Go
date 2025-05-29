@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Turist Go | Cerro de Guadalupe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset básico */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f7fa;
+      color: #222222;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a, button {
+      font-family: inherit;
+    }
+
+    /* Header elegante con imagen y overlay */
+    header {
+      position: relative;
+      background: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noBVBfkzMhr5Iv5WniTtH17wmRsybG_7bE4U3QuLgqMLPz5j_W5JrDTi8BA5tNkrB3_2jOHCV2CTzKUrfZOgMBvCtwKfl1umc0qXxtNRcFWAO3V-NiDwFUOOWf_166Q3IIF0tqltQ=s1360-w1360-h1020-rw') center/cover no-repeat;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+      z-index: 0;
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+      margin: 0 20px;
+    }
+    header h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      letter-spacing: 0.04em;
+    }
+    header p {
+      margin-top: 10px;
+      font-weight: 400;
+      font-size: 1.15rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Contenedor principal */
+    main {
+      max-width: 900px;
+      margin: 40px auto 60px;
+      padding: 0 24px;
+    }
+    section {
+      margin-bottom: 48px;
+    }
+    section h2 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      color: #004d40; /* verde oscuro elegante */
+      border-bottom: 2px solid #004d40;
+      padding-bottom: 6px;
+      max-width: fit-content;
+    }
+    section p, section ul {
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: #444444;
+    }
+    ul {
+      padding-left: 1.2em;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    /* Footer minimalista */
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 20px 10px;
+      background-color: #004d40;
+      color: #f0f0f0;
+      user-select: none;
+    }
+
+    /* Botón retroceso - más sutil y moderno */
+    .btn-retroceso {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      background-color: #004d40;
+      border: none;
+      color: white;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0, 77, 64, 0.4);
+      transition: background-color 0.3s ease;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-retroceso:hover, .btn-retroceso:focus {
+      background-color: #00332f;
+      outline: none;
+    }
+
+    /* Icono flecha para retroceso */
+    .btn-retroceso svg {
+      width: 16px;
+      height: 16px;
+      fill: white;
+    }
+
+    /* Botón "Cómo llegar" - moderno y con icono */
+    .btn-maps {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #007a5a;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 122, 90, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1100;
+    }
+    .btn-maps:hover, .btn-maps:focus {
+      background-color: #005a3f;
+      box-shadow: 0 8px 16px rgba(0, 90, 63, 0.6);
+      outline: none;
+    }
+    .btn-maps svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        height: 240px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+        max-width: 90%;
+      }
+      main {
+        margin: 30px auto 50px;
+        padding: 0 16px;
+      }
+      section h2 {
+        font-size: 1.4rem;
+      }
+      .btn-retroceso {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+      .btn-maps {
+        padding: 12px 18px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="btn-retroceso" aria-label="Volver a la página anterior" onclick="history.back()">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    Volver
+  </button>
+
+  <header role="banner">
+    <h1 id="titulo">Turist Go: Cerro de Guadalupe</h1>
+    <p aria-labelledby="titulo">Explora el Cerro de Guadalupe, un mirador emblemático de Bogotá que combina espiritualidad, historia y vistas panorámicas únicas de la capital.</p>
+  </header>
+
+  <main role="main">
+    <section role="region" aria-labelledby="icono">
+      <h2 id="icono">Un ícono de fe y naturaleza</h2>
+      <p>El Cerro de Guadalupe, a 3.360 metros sobre el nivel del mar, es uno de los cerros tutelares de Bogotá. Hogar de una estatua de 15 metros de la Virgen de la Inmaculada Concepción y una pequeña ermita, ofrece un espacio de reflexión y una vista espectacular de la ciudad.</p>
+    </section>
+
+    <section role="region" aria-labelledby="acceso">
+      <h2 id="acceso">Formas de acceso</h2>
+      <ul>
+        <li><strong>Vehículo particular:</strong> Toma la Avenida Circunvalar y sigue la vía hacia Choachí; en el km 6.7, un desvío señalizado lleva al santuario.</li>
+        <li><strong>Transporte público:</strong> Buses desde Calle 6 con Carrera 15 o Avenida Caracas, especialmente los domingos (costo aprox. $2,000-$10,000 COP).</li>
+        <li><strong>Sendero peatonal:</strong> El sendero Guadalupe-Aguanoso está abierto los fines de semana (6:30 a.m.-12:00 p.m.), con reserva previa.</li>
+      </ul>
+    </section>
+
+    <section role="region" aria-labelledby="actividades">
+      <h2 id="actividades">Actividades recomendadas</h2>
+      <ul>
+        <li>Asistir a las misas dominicales en la ermita (9:00 a.m., 10:30 a.m., 12:00 p.m.).</li>
+        <li>Disfrutar de la vista panorámica y fotografiar la ciudad.</li>
+        <li>Recorrer el sendero Guadalupe-Aguanoso para observar fauna y flora.</li>
+        <li>Comprar artesanías y probar comida típica como arepas o agua de panela.</li>
+      </ul>
+    </section>
+
+    <section role="region" aria-labelledby="consejos">
+      <h2 id="consejos">Consejos para bogotanos</h2>
+      <p>Visita los domingos para aprovechar las misas o entre semana para mayor tranquilidad. Lleva ropa abrigada, protector solar y agua. Reserva el sendero con antelación en la página del Acueducto de Bogotá. Ideal para peregrinaciones o caminatas en un entorno sereno.</p>
+    </section>
+  </main>
+
+  <button
+    class="btn-maps"
+    aria-label="Abrir Google Maps para llegar al Cerro de Guadalupe"
+    onclick="window.open('https://maps.app.goo.gl/GfZgERfBUERgpoy68', '_blank')"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z"/>
+    </svg>
+    Cómo llegar
+  </button>
+
+  <footer role="contentinfo">
+    © 2025 Turist Go | Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
