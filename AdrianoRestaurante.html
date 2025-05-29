@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adriano Restaurante | Turist Go</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --accent-color: #ffcc70;
+      --btn-bg: #ff7b00;
+      --btn-hover: #e86c00;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--main-bg);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    #videoContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #videoElement {
+      width: 90%;
+      max-width: 600px;
+      border-radius: 16px;
+      border: 3px solid var(--btn-bg);
+    }
+    #detectionMessage {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-top: 10px;
+    }
+    .card {
+      display: none;
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+      animation: fadeIn 1s ease forwards;
+      margin-top: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .content {
+      padding: 30px;
+      text-align: center;
+    }
+    .content h1 {
+      font-size: 2.8rem;
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+    .content h2 {
+      font-size: 1.4rem;
+      color: #d0d0d0;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    .content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #e0e0e0;
+      margin-bottom: 20px;
+    }
+    .map-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--btn-bg);
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 123, 0, 0.3);
+      margin-top: 10px;
+    }
+    .map-btn:hover {
+      background: var(--btn-hover);
+      box-shadow: 0 6px 20px rgba(255, 123, 0, 0.5);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="videoContainer">
+    <video id="videoElement" autoplay muted playsinline></video>
+    <div id="detectionMessage">Apunta la cámara a una comida para descubrir el restaurante...</div>
+  </div>
+
+  <div class="card" id="infoCard">
+    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/b0/10/a4/cocteleria-adriano.jpg?w=1100&h=600&s=1" alt="Interior elegante del restaurante Adriano en Bogotá" />
+    <div class="content">
+      <h1>Adriano</h1>
+      <h2>Una experiencia de tapeo español en Bogotá</h2>
+      <p>
+        Adriano, liderado por el chef colombo-español Felipe Giraldo, fusiona la esencia de la cocina española contemporánea con ingredientes locales en la histórica Casa República.
+      </p>
+      <p>
+        En Turist Go celebramos espacios como Adriano, donde la tradición y la modernidad se encuentran en cada bocado.
+      </p>
+      <a class="map-btn" href="https://maps.app.goo.gl/V7BoSBB2wEz1b3Sw6" target="_blank">Ver en Google Maps</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.20.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+<script>
+  let model;
+  const video = document.getElementById("videoElement");
+  const message = document.getElementById("detectionMessage");
+  const card = document.getElementById("infoCard");
+
+  async function initDetection() {
+    model = await cocoSsd.load();
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    video.srcObject = stream;
+    video.play();
+    detectLoop();
+  }
+
+  async function detectLoop() {
+    if (video.readyState === 4) {
+      const predictions = await model.detect(video);
+
+      // Lista de clases de comida que el modelo COCO-SSD puede detectar
+      const comidaClases = [
+  "banana",
+  "apple",
+  "orange",
+  "broccoli",
+  "carrot",
+  "hot dog",
+  "pizza",
+  "donut",
+  "cake",
+  "sandwich",
+  "bowl",
+  
+  // Comidas adicionales frecuentes en datasets más grandes o personalizables
+  "burger",
+  "fries",
+  "steak",
+  "sushi",
+  "pasta",
+  "ice cream",
+  "taco",
+  "salad",
+  "noodles",
+  "chicken",
+  "fish",
+  "rice",
+  "egg",
+  "melon",
+  "grapes",
+  "pear",
+  "watermelon",
+  "pineapple",
+  "mushroom",
+  "lobster",
+  "shrimp",
+  "cookie",
+  "croissant",
+  "bagel",
+  "cucumber",
+  "tomato",
+  "pepper",
+  "corn",
+  "peas",
+  "beans",
+  "cheese",
+  "bacon",
+  "meatball",
+  "pancake",
+  "waffle",
+  "pie",
+  "cereal"
+];
+
+
+      const foodItem = predictions.find(p => comidaClases.includes(p.class));
+
+      if (foodItem) {
+        message.textContent = `🍽️ ¡Comida detectada: ${foodItem.class}! Mostrando restaurante...`;
+        card.style.display = "block";
+        return; // detener loop después de detectar comida
+      } else {
+        message.textContent = "Buscando comida...";
+      }
+    }
+    requestAnimationFrame(detectLoop);
+  }
+
+  window.addEventListener("load", initDetection);
+</script>
+
+</body>
+</html>
+
