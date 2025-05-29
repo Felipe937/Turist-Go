@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TuristGo - Iniciar sesión</title>
+  <style>
+    :root {
+      --azul: #3366ff;
+      --gris-claro: #f4f6f8;
+      --gris: #ccc;
+      --sombra: rgba(0, 0, 0, 0.1);
+      --radio: 12px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--gris-claro);
+      color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2em;
+      border-radius: var(--radio);
+      box-shadow: 0 8px 20px var(--sombra);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .logo {
+      width: 70px;
+      margin-bottom: 1em;
+    }
+
+    h1 {
+      margin: 0.3em 0;
+      font-size: 1.6em;
+    }
+
+    p {
+      font-size: 1em;
+      color: #666;
+      margin-bottom: 1.5em;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.85em;
+      margin: 0.5em 0;
+      border: 1px solid var(--gris);
+      border-radius: 8px;
+      font-size: 1em;
+      box-sizing: border-box;
+      background: #f9f9f9;
+    }
+
+    input:focus {
+      outline: 2px solid var(--azul);
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9em;
+      margin-top: 0.5em;
+    }
+
+    .options label {
+      display: flex;
+      align-items: center;
+    }
+
+    .options input[type="checkbox"] {
+      margin-right: 0.4em;
+    }
+
+    .options a {
+      color: var(--azul);
+      text-decoration: none;
+    }
+
+    .login-button {
+      background-color: var(--azul);
+      color: white;
+      border: none;
+      padding: 0.95em;
+      width: 100%;
+      font-size: 1em;
+      margin-top: 1.2em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      background-color: #2b55d4;
+    }
+
+    .divider {
+      margin: 1.8em 0 1.2em;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.9em;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background-color: #ccc;
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .google-button {
+      border: 1px solid var(--gris);
+      padding: 0.85em;
+      width: 100%;
+      border-radius: 8px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+
+    .google-button img {
+      width: 20px;
+      margin-right: 0.8em;
+    }
+
+    .bottom-text {
+      margin-top: 1.2em;
+      font-size: 0.95em;
+    }
+
+    .bottom-text a {
+      color: var(--azul);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .bottom-text a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 450px) {
+      .container {
+        padding: 1.5em;
+      }
+
+      h1 {
+        font-size: 1.4em;
+      }
+
+      p {
+        font-size: 0.95em;
+      }
+
+      .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="form" aria-labelledby="titulo">
+    <img src="img/WhatsApp Image 2025-05-05 at 3.48.47 PM.jpeg" alt="Logo TuristGo" class="logo">
+    <h1 id="titulo">TuristGo</h1>
+    <p>Explora el mundo con nosotros</p>
+
+    <form action="Categorias.html" method="POST">
+      <input type="email" name="correo" placeholder="Correo electrónico" aria-label="Correo electrónico" required>
+      <input type="password" name="clave" placeholder="Contraseña" aria-label="Contraseña" required>
+
+      <div class="options">
+        <label><input type="checkbox" name="recordar"> Recordarme</label>
+        <a href="RecuperarContrasena.html">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="submit" class="login-button">Iniciar sesión</button>
+    </form>
+
+    <div class="divider">O continúa con</div>
+
+    <button class="google-button" onclick="window.location.href='https://accounts.google.com/signin';">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
+      Continuar con Google
+    </button>    
+
+    <div class="bottom-text">
+      ¿No tienes una cuenta? <a href="Registro.html">Regístrate</a>
+    </div>
+  </div>
+</body>
+</html>
