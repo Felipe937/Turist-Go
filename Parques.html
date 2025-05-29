@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parques Naturales en Bogotá</title>
+    <style>
+        :root {
+            --primary-color: #f4b400;
+            --secondary-color: #222;
+            --background-color: #fff;
+            --card-bg: #fafafa;
+            --text-color: #111;
+            --star-color: #ffb300;
+            --focus-color: #1976d2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-size: 1.15em;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: #222;
+            padding: 32px 10px 20px 10px;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 0.2em;
+        }
+        header p {
+            font-size: 1.2em;
+            margin-top: 0;
+        }
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .back-button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+        .back-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--focus-color);
+        }
+        main {
+            min-height: 80vh;
+        }
+        .park-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            padding: 32px 10px 90px 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .park-link {
+            text-decoration: none;
+            color: inherit;
+            outline: none;
+        }
+        .park-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            width: 340px;
+            padding: 28px 20px 20px 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .park-link:focus .park-item,
+        .park-item:focus-within,
+        .park-item:focus {
+            box-shadow: 0 0 0 4px var(--focus-color);
+            transform: scale(1.03);
+        }
+        .park-item img {
+            width: 100%;
+            height: 190px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 18px;
+        }
+        .park-item h3 {
+            font-size: 1.4em;
+            color: var(--primary-color);
+            margin: 0 0 12px 0;
+        }
+        .park-item p {
+            font-size: 1.08em;
+            color: var(--text-color);
+            margin: 0 0 10px 0;
+        }
+        .stars {
+            font-size: 1.3em;
+            color: var(--star-color);
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+        @media (max-width: 900px) {
+            .park-list {
+                flex-direction: column;
+                align-items: center;
+                gap: 36px;
+            }
+            .park-item {
+                width: 95vw;
+                max-width: 400px;
+            }
+        }
+        footer {
+            text-align: center;
+            padding: 20px 10px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="back-button" onclick="window.history.back();" aria-label="Volver atrás">←</button>
+    <h1>Parques Naturales Recomendados en Bogotá</h1>
+    <p>Descubre los espacios verdes más emblemáticos y disfruta la naturaleza en la ciudad.</p>
+</header>
+
+<main>
+    <section class="park-list" aria-label="Lista de parques naturales recomendados en Bogotá">
+        <a href="CerroMonserrate.html" class="park-link">
+            <article class="park-item" tabindex="0">
+                <img src="Img/Parques/Monserrate.jpg"
+                     alt="Vista panorámica del Cerro de Monserrate, con senderos y la iglesia en la cima." />
+                <h3>Cerro de Monserrate</h3>
+                <p>Ícono de la ciudad, ideal para caminatas ecológicas y disfrutar de vistas panorámicas de Bogotá.</p>
+                <div class="stars" aria-label="5 de 5 estrellas">
+                    ★★★★★<span class="sr-only">5 de 5 estrellas</span>
+                </div>
+            </article>
+        </a>
+        <a href="JardinBotanico.html" class="park-link">
+            <article class="park-item" tabindex="0">
+                <img src="Img/Parques/Jardín Botánico.jpg"
+                     alt="Senderos accesibles y plantas nativas en el Jardín Botánico de Bogotá." />
+                <h3>Jardín Botánico</h3>
+                <p>Espacio dedicado a la conservación y educación ambiental con una gran variedad de flora nativa.</p>
+                <div class="stars" aria-label="4 de 5 estrellas">
+                    ★★★★☆<span class="sr-only">4 de 5 estrellas</span>
+                </div>
+            </article>
+        </a>
+        <a href="parque-simon-bolivar.html" class="park-link">
+            <article class="park-item" tabindex="0">
+                <img src="Img/Parques/Parque Simón Bolívar.jpg"
+                     alt="Lago central y zonas verdes accesibles del Parque Simón Bolívar en Bogotá." />
+                <h3>Parque Simón Bolívar</h3>
+                <p>El pulmón verde de Bogotá, perfecto para picnics, conciertos y caminatas alrededor del lago.</p>
+                <div class="stars" aria-label="4 de 5 estrellas">
+                    ★★★★☆<span class="sr-only">4 de 5 estrellas</span>
+                </div>
+            </article>
+        </a>
+        <a href="cerro-guadalupe.html" class="park-link">
+            <article class="park-item" tabindex="0">
+                <img src="Img/Parques/Cerro de Guadalupe.png"
+                     alt="Estatua de la Virgen y senderos naturales en el Cerro de Guadalupe." />
+                <h3>Cerro de Guadalupe</h3>
+                <p>Ubicado cerca de Monserrate, ofrece senderos naturales y una estatua imponente de la Virgen.</p>
+                <div class="stars" aria-label="3 de 5 estrellas">
+                    ★★★☆☆<span class="sr-only">3 de 5 estrellas</span>
+                </div>
+            </article>
+        </a>
+        <a href="humedal-cordoba.html" class="park-link">
+            <article class="park-item" tabindex="0">
+                <img src="Img/Parques/RPF2VSDCNBCINEILXCPDNCDFBM.jpg"
+                     alt="Aves y vegetación en el Humedal Córdoba, con senderos señalizados." />
+                <h3>Humedal Córdoba</h3>
+                <p>Área protegida que permite observar aves y aprender sobre los ecosistemas de humedal urbanos.</p>
+                <div class="stars" aria-label="4 de 5 estrellas">
+                    ★★★★☆<span class="sr-only">4 de 5 estrellas</span>
+                </div>
+            </article>
+        </a>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Turist Go | Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
