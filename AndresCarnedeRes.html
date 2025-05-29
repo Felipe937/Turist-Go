@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrés Carne de Res - Experiencia Nocturna en Bogotá</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1c1c1c;
+      color: #f5f5f5;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #1c1c1c;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 60, 0, 0.6);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #ff4a00;
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+    }
+
+    .location {
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      object-fit: cover;
+      height: auto;
+      max-height: 400px;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+
+    .highlight {
+      color: #ff4a00;
+      font-weight: 700;
+    }
+
+    .info {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      box-shadow: inset 0 0 10px #ff4a0070;
+    }
+
+    .info strong {
+      color: #ff4a00;
+    }
+
+    a.button {
+      display: block;
+      background-color: #ff4a00;
+      color: white;
+      text-align: center;
+      padding: 14px 0;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      margin-top: auto;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    a.button:hover,
+    a.button:focus {
+      background-color: #cc3f00;
+      outline: none;
+    }
+
+    button.back-btn {
+      background-color: #444;
+      color: #f5f5f5;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button.back-btn:hover,
+    button.back-btn:focus {
+      background-color: #666;
+      outline: none;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      p, .info {
+        font-size: 0.95rem;
+      }
+
+      a.button, button.back-btn {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+        letter-spacing: 1.2px;
+      }
+
+      p, .info {
+        font-size: 0.9rem;
+      }
+
+      img {
+        max-height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Andrés Carne de Res</h1>
+    <button class="back-btn" type="button" aria-label="Volver a la página anterior" onclick="window.history.back()">← Volver</button>
+    <div class="location" role="region" aria-label="Ubicación">Bogotá y Chía, Colombia</div>
+    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/6f/c8/98/andres-carne-de-res.jpg?w=900&h=500&s=1" alt="Entrada colorida y llamativa de Andrés Carne de Res en Chía" />
+    <p>
+      Bienvenido a <span class="highlight">Andrés Carne de Res</span>, un ícono de la gastronomía colombiana que combina sabores auténticos con una experiencia cultural vibrante y única. Fundado hace más de 40 años, este lugar ofrece desde deliciosa carne a la parrilla hasta un ambiente lleno de música, arte y tradición.
+    </p>
+    <p>
+      En sus sedes de Bogotá (Andrés D.C.) y Chía, disfrutarás de una atmósfera festiva, decoración colorida y espectáculos que hacen de cada visita una experiencia inolvidable para locales y turistas.
+    </p>
+    <div class="info" role="region" aria-label="Información del restaurante">
+      <p><strong>Dirección Bogotá (Andrés D.C.):</strong> Calle 82 No. 11 – 15, Bogotá</p>
+      <p><strong>Dirección Chía:</strong> Calle 3 No. 11A-56, Chía</p>
+      <p><strong>Horario:</strong> Miércoles a domingo, 12:00 PM - 3:00 AM</p>
+      <p><strong>Recomendación:</strong> Reserva con anticipación y prepárate para vivir una experiencia gastronómica y cultural única.</p>
+    </div>
+    <a class="button" href="https://maps.app.goo.gl/67kE7VWsVwmLBfRx8" target="_blank" rel="noopener noreferrer" aria-label="Visitar Andrés Carne de Res en una ventana nueva">Visita Andrés Carne de Res</a>
+    <footer role="contentinfo">© 2025 Turist Go - Andrés Carne de Res</footer>
+  </div>
+</body>
+</html>
