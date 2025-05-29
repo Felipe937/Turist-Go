@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museo del Oro | Bogotá, Colombia</title>
+  <style>
+    /* Colores con alto contraste */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff; /* fondo blanco */
+      color: #000000; /* texto negro para máximo contraste */
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    /* Enlace para saltar al contenido */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #000;
+      color: #fff;
+      padding: 8px 16px;
+      z-index: 100;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    header {
+      background-color: #6f42c1; /* púrpura */
+      color: #ffffff;
+      text-align: center;
+      padding: 2rem 1rem 2rem 4.5rem; /* espacio para botón */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+
+    /* Botón de retroceso */
+    .back-button {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      background-color: #4b2a8c;
+      border: none;
+      color: white;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-button:hover,
+    .back-button:focus {
+      background-color: #3a1f6d;
+      outline: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: justify;
+      color: #111111;
+    }
+
+    section img {
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #6f42c1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background-color: #eee;
+    }
+
+    section h2 {
+      color: #6f42c1;
+      margin-top: 0;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #222222;
+      color: #ffffff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsivo */
+    @media (max-width: 600px) {
+      header {
+        padding-left: 3.5rem;
+      }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      .back-button {
+        top: 1rem;
+        left: 1rem;
+        transform: none;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+      section img {
+        width: 160px;
+        height: 160px;
+      }
+      section h2 {
+        font-size: 1.4rem;
+      }
+      body {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#contenido-principal" class="skip-link">Saltar al contenido principal</a>
+
+  <header role="banner">
+    <button class="back-button" aria-label="Volver a la página anterior" onclick="history.back();">
+      ← Volver
+    </button>
+    <h1>Museo del Oro</h1>
+    <p>El tesoro cultural de Colombia en el corazón de Bogotá</p>
+  </header>
+
+  <main id="contenido-principal" tabindex="-1" role="main">
+    <section aria-labelledby="titulo-museo">
+      <img src="Img/LgInf/Museo-del-Oro.jpg" alt="Fachada circular del Museo del Oro en Bogotá, Colombia" />
+      <h2 id="titulo-museo">Descubre el Tesoro Cultural de Colombia</h2>
+      <p>
+        Ubicado en el centro histórico de Bogotá, el <strong>Museo del Oro</strong> es uno de los espacios culturales más emblemáticos de Colombia y de toda América Latina. Administrado por el Banco de la República, este museo alberga la colección de orfebrería prehispánica más importante del mundo, con más de <strong>55,000 piezas</strong> que narran la riqueza simbólica, técnica y artística de las culturas indígenas que habitaron el territorio colombiano mucho antes de la llegada de los europeos.
+      </p>
+      <p>
+        Fundado oficialmente en 1939 con el objetivo de preservar y proteger el patrimonio arqueológico del país, el Museo del Oro comenzó con una pequeña colección de objetos que fue creciendo con el tiempo gracias a adquisiciones, donaciones y hallazgos arqueológicos. Hoy en día, sus modernas instalaciones ofrecen al visitante una experiencia inmersiva que combina historia, arte y tecnología, permitiendo comprender el valor espiritual y social que el oro tenía para las civilizaciones indígenas.
+      </p>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2025 <strong>Turist Go</strong> | Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
