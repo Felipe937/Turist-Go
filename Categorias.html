@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explorar | Turist Go</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --accent-color: #ffcc70;
+      --btn-bg: #ff7b00;
+      --btn-hover: #e86c00;
+
+      --bares-color: #e6f0fa;
+      --bares-text: #1976d2;
+
+      --restaurantes-color: #e6f4e6;
+      --restaurantes-text: #388e3c;
+
+      --parques-color: #fff3e0;
+      --parques-text: #fb8c00;
+
+      --museos-color: #f4e6f4;
+      --museos-text: #9c27b0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      max-width: 350px;
+      margin: 20px auto;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--btn-bg);
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+
+    input[type="text"]::placeholder {
+      color: #999;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--btn-bg);
+      box-shadow: 0 0 10px rgba(255, 123, 0, 0.2);
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .category {
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .category:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .category i {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .bares {
+      background-color: var(--bares-color);
+      color: var(--bares-text);
+    }
+
+    .restaurantes {
+      background-color: var(--restaurantes-color);
+      color: var(--restaurantes-text);
+    }
+
+    .parques {
+      background-color: var(--parques-color);
+      color: var(--parques-text);
+    }
+
+    .museos {
+      background-color: var(--museos-color);
+      color: var(--museos-text);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      input[type="text"] {
+        font-size: 0.95rem;
+        padding: 10px 16px;
+      }
+
+      .category {
+        font-size: 0.95rem;
+        padding: 14px;
+        border-radius: 14px;
+      }
+
+      .category i {
+        font-size: 22px;
+      }
+
+      .categories {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Explorar</h1>
+  <input type="text" placeholder="Buscar categorías..." />
+
+  <div class="categories">
+    <a href="Bares.html">
+      <div class="category bares">
+        <i class="fas fa-cocktail"></i>
+        Bares
+      </div>
+    </a>
+    <a href="Restaurantes.html">
+      <div class="category restaurantes">
+        <i class="fas fa-utensils"></i>
+        Restaurantes
+      </div>
+    </a>
+    <a href="Parques.html">
+      <div class="category parques">
+        <i class="fas fa-tree"></i>
+        Parques
+      </div>
+    </a>
+    <a href="Museos.html">
+      <div class="category museos">
+        <i class="fas fa-university"></i>
+        Museos
+      </div>
+    </a>
+  </div>
+</body>
+</html>
